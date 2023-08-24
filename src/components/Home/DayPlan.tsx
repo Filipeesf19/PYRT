@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, Stack, Button } from "@mui/material";
+import { Box, Card, Stack } from "@mui/material";
 import RecipeCard from "./RecipeCard";
 import { dayRecipes } from "../../utils/data";
 import { CustomButton2, CustomText2 } from "../../styling/GlobalStyles";

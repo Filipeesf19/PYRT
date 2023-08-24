@@ -25,7 +25,7 @@ const RecipeList: React.FC = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const handlePageChange = (event: React.ChangeEvent<unknown>, newPage: number) => {
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, newPage: number) => {
     setCurrentPage(newPage);
   };
 
