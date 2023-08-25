@@ -26,7 +26,7 @@ const Filter: React.FC = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          flexDirection: { xs: "column", lg: "row" },
+          flexDirection: { xs: "row", md: "column", lg: "row" },
         }}
       >
         <CustomText1>categories</CustomText1>
@@ -45,20 +45,23 @@ const Filter: React.FC = () => {
       {filterCategories.map((categoryData, index) => (
         <Fragment key={index}>
           {categoryData.subCategory ? (
-            <ListItemButton onClick={() => handleClick(categoryData.category)}>
+            <ListItemButton
+              onClick={() => handleClick(categoryData.category)}
+              sx={{ padding: "0" }}
+            >
               <CustomTextList1 primary={categoryData.category} />
               {openCategory === categoryData.category ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
           ) : (
-            <ListItem>
+            <ListItem disablePadding>
               <CustomTextList1 primary={categoryData.category} />
             </ListItem>
           )}
           {categoryData.subCategory && (
             <Collapse in={openCategory === categoryData.category} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
+              <List disablePadding>
                 {categoryData.subCategory.map((item, itemIndex) => (
-                  <ListItemButton key={itemIndex} style={{ paddingLeft: "2rem" }}>
+                  <ListItemButton key={itemIndex}>
                     <CustomTextList1 primary={item} />
                   </ListItemButton>
                 ))}

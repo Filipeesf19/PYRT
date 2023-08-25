@@ -12,13 +12,23 @@ interface Props {
 
 const RecipeCard: React.FC<Props> = ({ recipe }) => {
   return (
-    <Card sx={{ position: "relative", margin: "5px" }} aria-label="Recipe_Card">
+    <Card
+      sx={{
+        position: "relative",
+        margin: "5px",
+        maxWidth: "150px", // Set a maximum width for the card
+      }}
+      aria-label="Recipe_Card"
+    >
       <CardMedia
         component="img"
         image={recipe.img}
         alt={recipe.title}
         aria-label="Recipe_Image"
-        height="150px"
+        sx={{
+          height: { xs: "75px", sm: "100px", lg: "150px" },
+          width: "100%",
+        }}
       />
       <CardContent
         aria-label="Recipe-Title-Container"

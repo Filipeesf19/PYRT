@@ -7,18 +7,21 @@ import { AddCircle } from "@mui/icons-material";
 
 const RecipeList: React.FC = () => {
   const theme = useTheme(); // Fetch the theme object
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm")); // Check for small screens
-  const isMediumScreen = useMediaQuery(theme.breakpoints.between("sm", "lg")); // Check for medium screens
+  const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down("sm")); // Check for small screens
+  const isSmallScreen = useMediaQuery(theme.breakpoints.between("sm", "md")); // Check for medium screens
+  const isMediumScreen = useMediaQuery(theme.breakpoints.between("md", "lg")); // Check for medium screens
   const isLargeScreen = useMediaQuery(theme.breakpoints.between("lg", "xl")); // Check for large screens
 
   let cardsPerPage = 18; // Default value for large screens
 
-  if (isSmallScreen) {
-    cardsPerPage = 6; // Adjust for small screens
+  if (isExtraSmallScreen) {
+    cardsPerPage = 10; // Adjust for extrasmall screens
+  } else if (isSmallScreen) {
+    cardsPerPage = 15; // Adjust for small screens
   } else if (isMediumScreen) {
-    cardsPerPage = 9; // Adjust for medium screens
+    cardsPerPage = 20; // Adjust for medium screens
   } else if (isLargeScreen) {
-    cardsPerPage = 12; // Adjust for medium screens
+    cardsPerPage = 18; // Adjust for medium screens
   }
 
   const totalPages = Math.ceil(recipes.length / cardsPerPage);
@@ -49,9 +52,14 @@ const RecipeList: React.FC = () => {
         </CustomIconButton1>
       </Stack>
       <Box sx={{ padding: "10px" }}>
-        <Grid container aria-label="Recipe_Grid">
+        <Grid
+          container
+          aria-label="Recipe_Grid"
+          columns={18}
+          sx={{ display: "flex", justifyContent: "space-around" }}
+        >
           {recipes.slice(startIndex, endIndex).map((recipe, index) => (
-            <Grid item xs={4} sm={4} md={4} lg={3} xl={2} key={index}>
+            <Grid item xs={3.5} sm={3.5} md={4} lg={3} xl={3} key={index}>
               <RecipeCard recipe={recipe} />
             </Grid>
           ))}

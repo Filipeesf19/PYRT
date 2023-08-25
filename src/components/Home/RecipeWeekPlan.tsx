@@ -30,7 +30,6 @@ const RecipeWeekPlan: React.FC = () => {
           overflowX: "auto",
           "& > *": {
             flex: "0 0 auto",
-            minWidth: "180px",
             marginRight: "5px",
           },
           scrollbarWidth: "thin",
@@ -51,7 +50,9 @@ const RecipeWeekPlan: React.FC = () => {
         }}
       >
         {weekRecipes.map((recipe, index) => (
-          <RecipeCard key={index} recipe={recipe} />
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <RecipeCard key={index} recipe={recipe} />
+          </Box>
         ))}
       </Box>
     </Card>

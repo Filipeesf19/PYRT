@@ -12,19 +12,29 @@ const Home: React.FC = () => {
       sx={{
         bgcolor: "background.paper",
         width: "100%",
+        padding: "0 15px",
+        display: "flex",
+        justifyContent: "space-around",
       }}
     >
       {/* Category Filters */}
-      <Grid item aria-label="Category_Filter" xs={3}>
+      <Grid item aria-label="Category_Filter" xs={6} md={3} order={{ xs: 1, md: 1 }}>
         <Filter />
       </Grid>
       {/* Central Container */}
-      <Grid item aria-label="Recipe_List" xs={11} sx={{ paddingTop: "20px" }}>
+      <Grid
+        item
+        aria-label="Recipe_List"
+        xs={16}
+        md={10}
+        lg={11}
+        order={{ xs: 3, md: 2 }}
+        sx={{ paddingTop: "20px" }}
+      >
         <RecipeContainer />
       </Grid>
-      {/* Ingredient Container */}
-
-      <Grid item aria-label="Ingredients_Filter" xs={2}>
+      {/* Ingredient Filter */}
+      <Grid item aria-label="Ingredient_Filter" xs={6} md={3} lg={2} order={{ xs: 2, md: 3 }}>
         <IngredientFilter />
       </Grid>
     </Grid>

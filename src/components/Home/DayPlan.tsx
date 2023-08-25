@@ -19,7 +19,6 @@ const dayPlan: React.FC = () => {
             overflowX: "auto",
             "& > *": {
               flex: "0 0 auto",
-              minWidth: "180px",
               marginRight: "5px",
             },
             scrollbarWidth: "thin",
