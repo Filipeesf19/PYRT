@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { useWindowSize } from "usehooks-ts";
+import { useMediaQuery, useTheme } from "@mui/material"; // Import necessary components
 
 const AppContext = createContext<any>({});
 
@@ -8,20 +8,19 @@ interface Props {
 }
 
 export const AppProvider: React.FC<Props> = ({ children }) => {
-  //Window Size
-  const windowSize = useWindowSize();
-  let isWindowSmall = false;
-  if (windowSize.width < 700) {
-    isWindowSmall = true;
-  } else {
-    isWindowSmall = false;
-  }
+  const theme = useTheme(); // Fetch the theme object
+  const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down("sm")); // Check for small screens
+  const isSmallScreen = useMediaQuery(theme.breakpoints.between("sm", "md")); // Check for medium screens
+  const isMediumScreen = useMediaQuery(theme.breakpoints.between("md", "lg")); // Check for medium screens
+  const isLargeScreen = useMediaQuery(theme.breakpoints.between("lg", "xl")); // Check for large screens
 
   return (
     <AppContext.Provider
       value={{
-        windowSize,
-        isWindowSmall,
+        isExtraSmallScreen,
+        isSmallScreen,
+        isMediumScreen,
+        isLargeScreen,
       }}
     >
       {children}

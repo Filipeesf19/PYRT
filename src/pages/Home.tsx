@@ -18,7 +18,13 @@ const Home: React.FC = () => {
       }}
     >
       {/* Category Filters */}
-      <Grid item aria-label="Category_Filter" xs={6} md={3} order={{ xs: 1, md: 1 }}>
+      <Grid
+        item
+        aria-label="Category_Filter"
+        xs={6}
+        md={3}
+        order={{ xs: 1, md: 1 }}
+      >
         <Filter />
       </Grid>
       {/* Central Container */}
@@ -29,12 +35,21 @@ const Home: React.FC = () => {
         md={10}
         lg={11}
         order={{ xs: 3, md: 2 }}
-        sx={{ paddingTop: "20px" }}
+        sx={{
+          paddingTop: { sm: 0, md: "20px" },
+        }}
       >
         <RecipeContainer />
       </Grid>
       {/* Ingredient Filter */}
-      <Grid item aria-label="Ingredient_Filter" xs={6} md={3} lg={2} order={{ xs: 2, md: 3 }}>
+      <Grid
+        item
+        aria-label="Ingredient_Filter"
+        xs={6}
+        md={3}
+        lg={2}
+        order={{ xs: 2, md: 3 }}
+      >
         <IngredientFilter />
       </Grid>
     </Grid>

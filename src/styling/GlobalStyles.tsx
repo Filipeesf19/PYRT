@@ -62,15 +62,14 @@ export const CustomButton2 = styled(Button)(({ theme }) => ({
 export const CustomIconButton1 = styled(IconButton)(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
   color: theme.palette.primary.main,
-  borderRadius: "50%",
-  "&:hover": {
-    backgroundColor: theme.palette.primary.dark,
+  ":hover": {
+    color: theme.palette.primary.dark,
   },
-  [theme.breakpoints.down("xs")]: { size: "small" },
-  [theme.breakpoints.between("sm", "md")]: { size: "small" },
-  [theme.breakpoints.between("md", "lg")]: { size: "small" },
-  [theme.breakpoints.between("lg", "xl")]: { size: "small" },
-  [theme.breakpoints.up("xl")]: { size: "small" },
+  [theme.breakpoints.down("xs")]: { fontSize: "10px" },
+  [theme.breakpoints.between("sm", "md")]: { fontSize: "15px" },
+  [theme.breakpoints.between("md", "lg")]: { fontSize: "15px" },
+  [theme.breakpoints.between("lg", "xl")]: { fontSize: "15px" },
+  [theme.breakpoints.up("xl")]: { fontSize: "20px" },
 }));
 
 /*------------------------
@@ -80,6 +79,38 @@ export const CustomIconButton1 = styled(IconButton)(({ theme }) => ({
 export const CustomTextList1 = styled(ListItemText)(({ theme }) => ({
   fontFamily: "Arial, sans-serif",
   color: theme.palette.text.primary,
+  [theme.breakpoints.down("xs")]: { fontSize: "8px" },
+  [theme.breakpoints.between("sm", "md")]: { fontSize: "10px" },
+  [theme.breakpoints.between("md", "lg")]: { fontSize: "10px" },
+  [theme.breakpoints.between("lg", "xl")]: { fontSize: "10px" },
+  [theme.breakpoints.up("xl")]: { fontSize: "15px" },
+}));
+
+export const NavbarItem = styled(ListItemText)(({ theme }) => ({
+  fontFamily: "Arial, sans-serif",
+  color: theme.palette.common.white,
+  textTransform: "capitalize",
+  transition: "transform 0.2s",
+  ":hover": { transform: "scale(1.1)" },
+  [theme.breakpoints.down("xs")]: { fontSize: "8px" },
+  [theme.breakpoints.between("sm", "md")]: { fontSize: "10px" },
+  [theme.breakpoints.between("md", "lg")]: { fontSize: "10px" },
+  [theme.breakpoints.between("lg", "xl")]: { fontSize: "10px" },
+  [theme.breakpoints.up("xl")]: { fontSize: "15px" },
+}));
+
+export const SidebarItem = styled(ListItemText)(({ theme }) => ({
+  fontFamily: "Arial, sans-serif",
+  textTransform: "capitalize",
+  transition: "transform 0.2s",
+  ":hover": { transform: "scale(1.1)" },
+  ":after": {
+    content: '""',
+    display: "block",
+    width: "100%",
+    height: "3px",
+    backgroundColor: "black",
+  },
   [theme.breakpoints.down("xs")]: { fontSize: "8px" },
   [theme.breakpoints.between("sm", "md")]: { fontSize: "10px" },
   [theme.breakpoints.between("md", "lg")]: { fontSize: "10px" },

@@ -1,23 +1,34 @@
 import React from "react";
-import { Stack, Box, Card, Typography, Button } from "@mui/material";
+import { Stack, Box, Card, Button } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { weekRecipes } from "../../utils/data";
 import RecipeCard from "./RecipeCard";
-import { CustomText2 } from "../../styling/GlobalStyles";
+import { CustomText1, CustomText2 } from "../../styling/GlobalStyles";
 
 const RecipeWeekPlan: React.FC = () => {
   return (
     <Card>
-      <Box sx={{ display: "flex", justifyContent: "center", backgroundColor: "primary.main" }}>
-        <CustomText2 sx={{ padding: "10px" }}>week recipes</CustomText2>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: "primary.main",
+        }}
+      >
+        <CustomText2 sx={{ padding: "5px" }}>week recipes</CustomText2>
       </Box>
-      <Stack direction="row" justifyContent="center" alignItems="center" aria-label="Current_Week">
+      <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        aria-label="Current_Week"
+      >
         <Button>
           <ChevronLeft />
         </Button>
-        <Typography variant="h6" sx={{ textAlign: "center", padding: "10px" }}>
+        <CustomText1 sx={{ textAlign: "center", padding: "10px" }}>
           week 1 (2 Jan to 8 Jan)
-        </Typography>
+        </CustomText1>
         <Button>
           <ChevronRight />
         </Button>

@@ -1,25 +1,33 @@
+import { Home, ShoppingCart, Settings, Login } from "@mui/icons-material";
+import React from "react";
+
 /* ====NAVIGATION LINKS==== */
 type navLink = {
   url: string;
   text: string;
+  icon: React.ReactNode;
 };
 
 export const navLinks: navLink[] = [
   {
     url: "/",
     text: "home",
+    icon: <Home />,
   },
   {
     url: "shopping_list",
     text: "shopping List",
+    icon: <ShoppingCart />,
   },
   {
     url: "settings",
     text: "settings",
+    icon: <Settings />,
   },
   {
     url: "login",
     text: "login",
+    icon: <Login />,
   },
 ];
 

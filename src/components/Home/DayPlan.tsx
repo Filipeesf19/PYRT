@@ -8,8 +8,14 @@ const dayPlan: React.FC = () => {
   return (
     <Stack direction="row" justifyContent="space-between" alignItems="center">
       <Card sx={{ width: "100%" }}>
-        <Box sx={{ display: "flex", justifyContent: "center", backgroundColor: "primary.main" }}>
-          <CustomText2 sx={{ padding: "10px" }}>recipes for the day</CustomText2>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "primary.main",
+          }}
+        >
+          <CustomText2 sx={{ padding: "5px" }}>recipes for the day</CustomText2>
         </Box>
         <Box
           aria-label="Week_Recipes_Container"

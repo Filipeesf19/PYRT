@@ -1,10 +1,20 @@
 import React from "react";
-import { Box, Stack, List, ListItem, ListItemText, IconButton } from "@mui/material";
+import {
+  Box,
+  Stack,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+} from "@mui/material";
 import { ingredients } from "../../utils/data";
 import { CustomText1, CustomIconButton1 } from "../../styling/GlobalStyles";
-import { Delete, AddCircle } from "@mui/icons-material";
+import { DeleteRounded, AddCircleRounded } from "@mui/icons-material";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 const IngredientFilter: React.FC = () => {
+  const { isExtraSmallScreen, isSmallScreen } = useGlobalContext();
+
   return (
     <Box
       sx={{
@@ -12,23 +22,24 @@ const IngredientFilter: React.FC = () => {
       }}
       aria-label="ingredient_filter_list"
     >
-      <Stack direction="row" justifyContent="space-between" alignItems="center">
+      <Stack direction="row" justifyContent="center" alignItems="center">
         <CustomText1>ingredients</CustomText1>
         <CustomIconButton1 aria-label="add_category">
-          <AddCircle />
+          <AddCircleRounded />
         </CustomIconButton1>
       </Stack>
       <List disablePadding>
-        {ingredients.map((ingredient, index) => {
-          return (
-            <ListItem key={index} disablePadding>
-              <ListItemText>{ingredient.label}</ListItemText>
-              <IconButton edge="end" sx={{ padding: "0" }}>
-                <Delete />
-              </IconButton>
-            </ListItem>
-          );
-        })}
+        {!(isExtraSmallScreen || isSmallScreen) &&
+          ingredients.map((ingredient, index) => {
+            return (
+              <ListItem key={index} disablePadding>
+                <ListItemText>{ingredient.label}</ListItemText>
+                <IconButton edge="end" sx={{ padding: "0" }}>
+                  <DeleteRounded />
+                </IconButton>
+              </ListItem>
+            );
+          })}
       </List>
     </Box>
   );
