@@ -104,13 +104,6 @@ export const SidebarItem = styled(ListItemText)(({ theme }) => ({
   textTransform: "capitalize",
   transition: "transform 0.2s",
   ":hover": { transform: "scale(1.1)" },
-  ":after": {
-    content: '""',
-    display: "block",
-    width: "100%",
-    height: "3px",
-    backgroundColor: "black",
-  },
   [theme.breakpoints.down("xs")]: { fontSize: "8px" },
   [theme.breakpoints.between("sm", "md")]: { fontSize: "10px" },
   [theme.breakpoints.between("md", "lg")]: { fontSize: "10px" },

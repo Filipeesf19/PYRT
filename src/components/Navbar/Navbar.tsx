@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
                 sx={{ padding: "10px" }}
               >
                 <ListItemIcon>{icon}</ListItemIcon>
-                <SidebarItem primary={text} />
+                <SidebarItem primary={text} onClick={toggleDrawer(false)} />
               </ListItem>
             );
           })}
