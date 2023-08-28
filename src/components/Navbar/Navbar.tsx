@@ -16,7 +16,7 @@ import { NavbarItem, SidebarItem } from "../../styling/GlobalStyles";
 import { useGlobalContext } from "../../context/GlobalContext";
 
 const Navbar: React.FC = () => {
-  const { isSmallScreen } = useGlobalContext();
+  const { isExtraSmallScreen } = useGlobalContext();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const toggleDrawer =
@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
     };
 
   const renderNavigation = () => {
-    if (isSmallScreen) {
+    if (isExtraSmallScreen) {
       return (
         <IconButton
           edge="start"
