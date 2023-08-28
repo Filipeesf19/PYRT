@@ -37,14 +37,15 @@ const Filter: React.FC = () => {
   };
 
   return (
-    <>
+    <Box
+      sx={{ padding: { xs: "1rem 1rem 0 1rem", md: "1rem 2rem 1rem 2rem" } }}
+    >
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: { xs: "column", md: "column", lg: "row" },
-          padding: { xs: 1, md: 2, lg: 3 },
         }}
       >
         <CustomText1 sx={{ paddingTop: "8px" }}>categories</CustomText1>
@@ -65,10 +66,7 @@ const Filter: React.FC = () => {
           )}
         </Stack>
       </Box>
-      <List
-        aria-labelledby="nested-list-subheader"
-        sx={{ padding: { xs: 1, md: 2, lg: 3 } }}
-      >
+      <List aria-labelledby="nested-list-subheader">
         {!isExtraSmallScreen &&
           !isSmallScreen &&
           filterCategories.map((categoryData, index) => (
@@ -108,7 +106,7 @@ const Filter: React.FC = () => {
             </Fragment>
           ))}
       </List>
-    </>
+    </Box>
   );
 };
 export default Filter;

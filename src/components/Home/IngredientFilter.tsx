@@ -17,10 +17,8 @@ const IngredientFilter: React.FC = () => {
 
   return (
     <Box
-      sx={{
-        padding: { xs: 1, md: 2, lg: 3 },
-      }}
       aria-label="ingredient_filter_list"
+      sx={{ padding: { xs: "1rem 1rem 0 1rem", md: "1rem 2rem 1rem 2rem" } }}
     >
       <Stack direction="row" justifyContent="center" alignItems="center">
         <CustomText1>ingredients</CustomText1>
