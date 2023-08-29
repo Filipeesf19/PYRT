@@ -13,6 +13,7 @@ const ShoppingHeader: React.FC = () => {
         alignItems: "center",
         backgroundColor: "primary.main",
         padding: "10px",
+        margin: "10px 0",
       }}
     >
       <CustomText3 sx={{ textAlign: "center" }}>Shopping List</CustomText3>
