@@ -29,6 +29,18 @@ export const CustomText2 = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.up("xl")]: { fontSize: "20px" },
 }));
 
+export const CustomText3 = styled(Typography)(({ theme }) => ({
+  fontFamily: "Arial, sans-serif",
+  color: theme.palette.common.white,
+  textTransform: "capitalize",
+  textAlign: "center",
+  [theme.breakpoints.down("xs")]: { fontSize: "15px" },
+  [theme.breakpoints.between("sm", "md")]: { fontSize: "18px" },
+  [theme.breakpoints.between("md", "lg")]: { fontSize: "20px" },
+  [theme.breakpoints.between("lg", "xl")]: { fontSize: "25px" },
+  [theme.breakpoints.up("xl")]: { fontSize: "30px" },
+}));
+
 /*------------------------
 -----------BUTTONS-----------
 /*------------------------*/

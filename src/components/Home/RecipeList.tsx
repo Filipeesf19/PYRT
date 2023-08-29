@@ -1,4 +1,4 @@
-import { Box, Card, Stack } from "@mui/material"; // Import necessary components
+import { Box, Card, Stack, Grid } from "@mui/material"; // Import necessary components
 import { recipes } from "../../utils/data";
 import RecipeCard from "./RecipeCard";
 import { CustomIconButton1, CustomText2 } from "../../styling/GlobalStyles";
@@ -24,12 +24,14 @@ const RecipeList: React.FC = () => {
           <AddCircle />
         </CustomIconButton1>
       </Stack>
-      <Box
+      <Grid
+        container
         aria-label="Week_Recipes_Container"
         sx={{
           display: "flex",
           padding: "10px",
           overflowX: "auto",
+          flexWrap: "nowrap",
           "& > *": {
             flex: "0 0 auto",
             marginRight: "5px",
@@ -52,11 +54,11 @@ const RecipeList: React.FC = () => {
         }}
       >
         {recipes.map((recipe, index) => (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Grid key={index} item sx={{ display: "flex", justifyContent: "center" }}>
             <RecipeCard key={index} recipe={recipe} />
-          </Box>
+          </Grid>
         ))}
-      </Box>
+      </Grid>
     </Card>
   );
 };

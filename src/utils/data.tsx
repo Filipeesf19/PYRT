@@ -264,3 +264,69 @@ export const dayRecipes: Recipe[] = [
     title: "Coffee",
   },
 ];
+
+/* ====SHOPPING LIST==== */
+
+interface ShoppingList {
+  item: string;
+  isNeeded: boolean;
+  category: string;
+}
+
+export const shoppingList: ShoppingList[] = [
+  {
+    item: "banana",
+    isNeeded: false,
+    category: "fruit",
+  },
+  {
+    item: "apple",
+    isNeeded: true,
+    category: "fruit",
+  },
+  {
+    item: "potato",
+    isNeeded: true,
+    category: "vegetables",
+  },
+  {
+    item: "lettuce",
+    isNeeded: true,
+    category: "vegetables",
+  },
+  {
+    item: "kale",
+    isNeeded: false,
+    category: "vegetables",
+  },
+  {
+    item: "orange",
+    isNeeded: true,
+    category: "fruit",
+  },
+  {
+    item: "detergent",
+    isNeeded: true,
+    category: "housekeeping",
+  },
+  {
+    item: "dishwasher liquid",
+    isNeeded: false,
+    category: "housekeeping",
+  },
+  {
+    item: "chicken",
+    isNeeded: false,
+    category: "meat",
+  },
+  {
+    item: "white fish",
+    isNeeded: false,
+    category: "fish",
+  },
+  {
+    item: "rice",
+    isNeeded: false,
+    category: "cereals",
+  },
+];
