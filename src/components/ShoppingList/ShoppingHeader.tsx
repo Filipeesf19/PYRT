@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { CustomIconButton1, CustomText3 } from "../../styling/GlobalStyles";
 import { AddCircle } from "@mui/icons-material";
 

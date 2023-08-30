@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Box, List, ListItem, ListItemText, ListItemButton, Grid } from "@mui/material";
+import { Stack, Box, List, ListItem, ListItemButton, Grid } from "@mui/material";
 import { CustomText3 } from "../../styling/GlobalStyles";
 import { shoppingList } from "../../utils/data";
 import { CustomText4 } from "../../styling/GlobalStyles";
