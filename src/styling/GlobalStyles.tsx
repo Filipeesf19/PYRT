@@ -10,7 +10,7 @@ export const CustomText1 = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
   textTransform: "capitalize",
   textAlign: "center",
-  [theme.breakpoints.down("xs")]: { fontSize: "15px" },
+  [theme.breakpoints.down("sm")]: { fontSize: "15px" },
   [theme.breakpoints.between("sm", "md")]: { fontSize: "18px" },
   [theme.breakpoints.between("md", "lg")]: { fontSize: "18px" },
   [theme.breakpoints.between("lg", "xl")]: { fontSize: "18px" },
@@ -22,7 +22,7 @@ export const CustomText2 = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.white,
   textTransform: "capitalize",
   textAlign: "center",
-  [theme.breakpoints.down("xs")]: { fontSize: "15px" },
+  [theme.breakpoints.down("sm")]: { fontSize: "15px" },
   [theme.breakpoints.between("sm", "md")]: { fontSize: "18px" },
   [theme.breakpoints.between("md", "lg")]: { fontSize: "18px" },
   [theme.breakpoints.between("lg", "xl")]: { fontSize: "18px" },
@@ -34,11 +34,23 @@ export const CustomText3 = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.white,
   textTransform: "capitalize",
   textAlign: "center",
-  [theme.breakpoints.down("xs")]: { fontSize: "15px" },
+  [theme.breakpoints.down("sm")]: { fontSize: "15px" },
   [theme.breakpoints.between("sm", "md")]: { fontSize: "18px" },
   [theme.breakpoints.between("md", "lg")]: { fontSize: "20px" },
   [theme.breakpoints.between("lg", "xl")]: { fontSize: "25px" },
   [theme.breakpoints.up("xl")]: { fontSize: "30px" },
+}));
+
+export const CustomText4 = styled(Typography)(({ theme }) => ({
+  fontFamily: "Arial, sans-serif",
+  color: theme.palette.text.primary,
+  textTransform: "capitalize",
+  textAlign: "center",
+  [theme.breakpoints.down("sm")]: { fontSize: "10px" },
+  [theme.breakpoints.between("sm", "md")]: { fontSize: "12px" },
+  [theme.breakpoints.between("md", "lg")]: { fontSize: "13px" },
+  [theme.breakpoints.between("lg", "xl")]: { fontSize: "16px" },
+  [theme.breakpoints.up("xl")]: { fontSize: "20px" },
 }));
 
 /*------------------------
