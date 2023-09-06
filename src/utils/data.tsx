@@ -2,7 +2,7 @@ import { Home, ShoppingCart, Settings, Login } from "@mui/icons-material";
 import React from "react";
 
 /* ====NAVIGATION LINKS==== */
-type navLink = {
+export type navLink = {
   url: string;
   text: string;
   icon: React.ReactNode;
@@ -33,7 +33,7 @@ export const navLinks: navLink[] = [
 
 /* ====FILTER CATEGORIES==== */
 
-interface Category {
+export interface Category {
   category: string;
   subCategory?: string[];
 }
@@ -46,7 +46,7 @@ export const filterCategories: Category[] = [
 
 /* ====RECIPES==== */
 
-interface Recipe {
+export interface Recipe {
   img: string;
   title: string;
   ingredients: { qty: string; ingredient: string }[];
@@ -618,7 +618,7 @@ export const recipes: Recipe[] = [
 
 /* ==== Ingredient Filter ==== */
 
-interface Ingredient {
+export interface Ingredient {
   id: number;
   label: string;
 }
@@ -834,7 +834,7 @@ export const dayRecipes: Recipe[] = [
 
 /* ====SHOPPING LIST==== */
 
-interface ShoppingList {
+export interface ShoppingList {
   item: string;
   isNeeded: boolean;
   category: string;
