@@ -17,12 +17,7 @@ const RecipeWeekPlan: React.FC = () => {
       >
         <CustomText2 sx={{ padding: "5px" }}>week recipes</CustomText2>
       </Box>
-      <Stack
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        aria-label="Current_Week"
-      >
+      <Stack direction="row" justifyContent="center" alignItems="center" aria-label="Current_Week">
         <Button>
           <ChevronLeft />
         </Button>
@@ -61,8 +56,8 @@ const RecipeWeekPlan: React.FC = () => {
         }}
       >
         {weekRecipes.map((recipe, index) => (
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <RecipeCard key={index} recipe={recipe} />
+          <Box key={index} sx={{ display: "flex", justifyContent: "center" }}>
+            <RecipeCard recipe={recipe} />
           </Box>
         ))}
       </Box>

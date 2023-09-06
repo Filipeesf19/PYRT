@@ -1,14 +1,21 @@
-import React from "react";
-import { Modal, Typography, Box } from "@mui/material";
-import { useModalContext } from "../../context/ModalContext";
+import React, { ReactNode } from "react";
+import { Modal, Box, IconButton } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { closeAllModals } from "../../features/modal/modalSlice";
+import CloseIcon from "@mui/icons-material/Close";
 
-const ModalMain: React.FC = () => {
-  const { isModalOpen, setIsModalOpen } = useModalContext();
+interface ModalMainProps {
+  children: ReactNode;
+}
+
+const ModalMain: React.FC<ModalMainProps> = ({ children }) => {
+  const dispatch = useDispatch();
+  const { isModalMainOpen } = useSelector((store: any) => store.modal);
 
   return (
     <Modal
-      open={isModalOpen}
-      onClose={() => setIsModalOpen(false)}
+      open={isModalMainOpen}
+      onClose={() => dispatch(closeAllModals())}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -23,14 +30,20 @@ const ModalMain: React.FC = () => {
           border: "2px solid #000",
           boxShadow: 24,
           p: 4,
+          textAlign: "center",
+          overflow: "auto",
         }}
       >
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Text in a modal
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-        </Typography>
+        {/* Close button */}
+        <IconButton
+          sx={{ position: "absolute", top: 0, right: 0 }}
+          onClick={() => dispatch(closeAllModals())}
+        >
+          <CloseIcon />
+        </IconButton>
+
+        {/* Modal content */}
+        {children}
       </Box>
     </Modal>
   );

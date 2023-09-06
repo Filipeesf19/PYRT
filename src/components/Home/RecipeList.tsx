@@ -3,12 +3,11 @@ import { recipes } from "../../utils/data";
 import RecipeCard from "./RecipeCard";
 import { CustomIconButton1, CustomText2 } from "../../styling/GlobalStyles";
 import { AddCircle } from "@mui/icons-material";
-import { useModalContext } from "../../context/ModalContext";
-import ModalMain from "../Modal/ModalMain";
+import { useDispatch } from "react-redux";
+import { openAddRecipeModal } from "../../features/modal/modalSlice";
 
 const RecipeList: React.FC = () => {
-  const { isModalOpen, setIsModalOpen } = useModalContext();
-  console.log(isModalOpen);
+  const dispatch = useDispatch();
   return (
     <Card>
       <Stack
@@ -24,7 +23,7 @@ const RecipeList: React.FC = () => {
         <CustomIconButton1
           aria-label="add_category"
           sx={{ position: "absolute", right: "20px", padding: "0" }}
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => dispatch(openAddRecipeModal())}
         >
           <AddCircle />
         </CustomIconButton1>
@@ -64,7 +63,6 @@ const RecipeList: React.FC = () => {
           </Grid>
         ))}
       </Grid>
-      <ModalMain />
     </Card>
   );
 };

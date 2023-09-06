@@ -1,12 +1,5 @@
 import { useState, Fragment } from "react";
-import {
-  List,
-  ListItemButton,
-  ListItem,
-  Collapse,
-  Box,
-  Stack,
-} from "@mui/material";
+import { List, ListItemButton, ListItem, Collapse, Box, Stack } from "@mui/material";
 import {
   ExpandLess,
   ExpandMore,
@@ -16,14 +9,18 @@ import {
   FilterAlt,
 } from "@mui/icons-material";
 import { filterCategories } from "../../utils/data";
-import {
-  CustomIconButton1,
-  CustomText1,
-  CustomTextList1,
-} from "../../styling/GlobalStyles";
+import { CustomIconButton1, CustomText1, CustomTextList1 } from "../../styling/GlobalStyles";
 import { useGlobalContext } from "../../context/GlobalContext";
+import { useDispatch } from "react-redux";
+import {
+  openAddCategoryModal,
+  openEditCategoryModal,
+  openCategoryFilterModal,
+} from "../../features/modal/modalSlice";
 
 const Filter: React.FC = () => {
+  const dispatch = useDispatch();
+
   const { isExtraSmallScreen, isSmallScreen } = useGlobalContext();
 
   const [openCategory, setOpenCategory] = useState<string>("");
@@ -37,9 +34,7 @@ const Filter: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{ padding: { xs: "1rem 1rem 0 1rem", md: "1rem 2rem 1rem 2rem" } }}
-    >
+    <Box sx={{ padding: { xs: "1rem 1rem 0 1rem", md: "1rem 2rem 1rem 2rem" } }}>
       <Box
         sx={{
           display: "flex",
@@ -53,14 +48,23 @@ const Filter: React.FC = () => {
           <CustomIconButton1 aria-label="delete_category">
             <DeleteRounded />
           </CustomIconButton1>
-          <CustomIconButton1 aria-label="icon_category">
+          <CustomIconButton1
+            aria-label="icon_category"
+            onClick={() => dispatch(openAddCategoryModal())}
+          >
             <EditRounded />
           </CustomIconButton1>
-          <CustomIconButton1 aria-label="add_category">
+          <CustomIconButton1
+            aria-label="add_category"
+            onClick={() => dispatch(openEditCategoryModal())}
+          >
             <AddCircleRounded />
           </CustomIconButton1>
           {(isExtraSmallScreen || isSmallScreen) && (
-            <CustomIconButton1 aria-label="Filter_category">
+            <CustomIconButton1
+              aria-label="Filter_category"
+              onClick={() => dispatch(openCategoryFilterModal())}
+            >
               <FilterAlt />
             </CustomIconButton1>
           )}
@@ -77,11 +81,7 @@ const Filter: React.FC = () => {
                   sx={{ padding: "0" }}
                 >
                   <CustomTextList1 primary={categoryData.category} />
-                  {openCategory === categoryData.category ? (
-                    <ExpandLess />
-                  ) : (
-                    <ExpandMore />
-                  )}
+                  {openCategory === categoryData.category ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
               ) : (
                 <ListItem disablePadding>
@@ -89,11 +89,7 @@ const Filter: React.FC = () => {
                 </ListItem>
               )}
               {categoryData.subCategory && (
-                <Collapse
-                  in={openCategory === categoryData.category}
-                  timeout="auto"
-                  unmountOnExit
-                >
+                <Collapse in={openCategory === categoryData.category} timeout="auto" unmountOnExit>
                   <List disablePadding>
                     {categoryData.subCategory.map((item, itemIndex) => (
                       <ListItemButton key={itemIndex}>
