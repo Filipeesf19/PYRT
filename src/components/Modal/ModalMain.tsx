@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { Modal, Box, IconButton } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { closeAllModals } from "../../features/modal/modalSlice";

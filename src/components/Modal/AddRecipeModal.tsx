@@ -1,5 +1,3 @@
-import React from "react";
-
 const AddRecipeModal = () => {
   return <div>AddRecipeModal</div>;
 };
