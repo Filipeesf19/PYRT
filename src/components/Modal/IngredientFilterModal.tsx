@@ -1,22 +1,13 @@
-import React, { useState } from "react";
 import { Box, Checkbox, FormControlLabel, Button } from "@mui/material";
-import { shoppingList } from "../../utils/data";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleIngredient } from "../../features/filters/filterSlice";
+import { ShoppingList } from "../../utils/data";
 
 const IngredientFilterModal: React.FC = () => {
-  // Create a state variable to keep track of selected ingredients
-  const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
-
-  // Function to handle checkbox changes
-  const handleIngredientChange =
-    (ingredient: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (event.target.checked) {
-        // If the checkbox is checked, add the ingredient to the selectedIngredients array
-        setSelectedIngredients([...selectedIngredients, ingredient]);
-      } else {
-        // If the checkbox is unchecked, remove the ingredient from the selectedIngredients array
-        setSelectedIngredients(selectedIngredients.filter((item) => item !== ingredient));
-      }
-    };
+  const dispatch = useDispatch();
+  const { ingredientList, selectedIngredients } = useSelector(
+    (store: any) => store.filter
+  );
 
   // Function to handle the "Apply" button click
   const handleApplyButtonClick = () => {
@@ -28,7 +19,7 @@ const IngredientFilterModal: React.FC = () => {
     <Box>
       <h1>Ingredients</h1>
       <form>
-        {shoppingList.map((shoppingItem, index) => {
+        {ingredientList.map((shoppingItem: ShoppingList, index: number) => {
           const { item } = shoppingItem;
           return (
             <FormControlLabel
@@ -36,7 +27,7 @@ const IngredientFilterModal: React.FC = () => {
               control={
                 <Checkbox
                   checked={selectedIngredients.includes(item)}
-                  onChange={handleIngredientChange(item)}
+                  onChange={() => dispatch(toggleIngredient(item))}
                   color="primary"
                 />
               }
@@ -45,7 +36,11 @@ const IngredientFilterModal: React.FC = () => {
           );
         })}
       </form>
-      <Button variant="contained" color="primary" onClick={handleApplyButtonClick}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleApplyButtonClick}
+      >
         Apply
       </Button>
     </Box>

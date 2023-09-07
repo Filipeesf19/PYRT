@@ -1,41 +1,44 @@
-// import { createSlice } from "@reduxjs/toolkit";
-// import { shoppingList, filterCategories, ShoppingList, Category } from "../../utils/data";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  shoppingList,
+  filterCategories,
+  ShoppingList,
+  Category,
+} from "../../utils/data";
 
-// interface FilterState {
-//   ingredientList: ShoppingList[];
-//   selectedIngredients: string[];
-//   categoryList: Category[];
-//   selectedCategories: string[];
-// }
+interface FilterState {
+  itemList: ShoppingList[];
+  selectedIngredients: string[];
+  categoryList: Category[];
+  selectedCategories: string[];
+}
+const initialState: FilterState = {
+  itemList: shoppingList,
+  selectedIngredients: [],
+  categoryList: filterCategories,
+  selectedCategories: [],
+};
 
-// const initialState: FilterState = {
-//   ingredientList: shoppingList,
-//   selectedIngredients: boolean,
-//   categoryList: filterCategories,
-//   selectedCategories: boolean,
-// };
+const filterSlice = createSlice({
+  name: "filter",
+  initialState,
+  reducers: {
+    // Reducer to handle ingredient changes
+    toggleIngredient: (state, action: PayloadAction<string>) => {
+      const { selectedIngredients } = state;
+      const ingredient = action.payload;
 
-// const modalSlice = createSlice({
-//   name: "filter",
-//   initialState,
-//   reducers: {
-//     openModal: (state) => {
-//       state.isModalMainOpen = true;
-//     },
+      if (selectedIngredients.includes(ingredient)) {
+        state.selectedIngredients = selectedIngredients.filter(
+          (item: string) => item !== ingredient
+        );
+      } else {
+        state.selectedIngredients = [...selectedIngredients, ingredient];
+      }
+    },
+  },
+});
 
-//   },
-// });
+export const { toggleIngredient } = filterSlice.actions;
 
-// export const {
-//   openModal,
-//   openAddCategoryModal,
-//   openAddRecipeModal,
-//   openAddToShoppingModal,
-//   openEditCategoryModal,
-//   openEditRecipeModal,
-//   openIngredientFilterModal,
-//   openCategoryFilterModal,
-//   closeAllModals,
-// } = modalSlice.actions;
-
-// export default modalSlice.reducer;
+export default filterSlice.reducer;
