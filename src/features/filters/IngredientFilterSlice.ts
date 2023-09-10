@@ -3,13 +3,13 @@ import {
   shoppingList,
   filterCategories,
   ShoppingList,
-  Category,
+  CategoryType,
 } from "../../utils/data";
 
 interface FilterState {
   itemList: ShoppingList[];
   selectedIngredients: string[];
-  categoryList: Category[];
+  categoryList: CategoryType[];
   selectedCategories: string[];
 }
 const initialState: FilterState = {

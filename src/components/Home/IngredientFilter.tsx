@@ -1,8 +1,15 @@
 import React from "react";
-import { Box, Stack, List, ListItem, ListItemText, IconButton } from "@mui/material";
+import {
+  Box,
+  Stack,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+} from "@mui/material";
 import { ingredients } from "../../utils/data";
 import { CustomText1, CustomIconButton1 } from "../../styling/GlobalStyles";
-import { DeleteRounded, AddCircleRounded } from "@mui/icons-material";
+import { DeleteRounded, FilterAlt } from "@mui/icons-material";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useDispatch } from "react-redux";
 import { openIngredientFilterModal } from "../../features/modal/modalSlice";
@@ -22,7 +29,7 @@ const IngredientFilter: React.FC = () => {
           aria-label="add_category"
           onClick={() => dispatch(openIngredientFilterModal())}
         >
-          <AddCircleRounded />
+          <FilterAlt />
         </CustomIconButton1>
       </Stack>
       <List disablePadding>

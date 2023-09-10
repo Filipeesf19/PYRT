@@ -4,7 +4,6 @@ import IngredientFilter from "../components/Home/IngredientFilter";
 import RecipeContainer from "../components/Home/RecipeContainer";
 import ModalMain from "../components/Modal/ModalMain";
 import AddRecipeModal from "../components/Modal/AddRecipeModal";
-import AddCategoryModal from "../components/Modal/AddCategoryModal";
 import EditCategoryModal from "../components/Modal/EditCategoryModal";
 import CategoryFilterModal from "../components/Modal/CategoryFilterModal";
 import IngredientFilterModal from "../components/Modal/IngredientFilterModal";
@@ -12,7 +11,6 @@ import { useSelector } from "react-redux";
 
 const Home: React.FC = () => {
   const {
-    isAddCategoryModalOpen,
     isEditCategoryModalOpen,
     isAddRecipeModalOpen,
     isCategoryFilterModalOpen,
@@ -34,7 +32,13 @@ const Home: React.FC = () => {
         }}
       >
         {/* Category Filters */}
-        <Grid item aria-label="Category_Filter" xs={6} md={3} order={{ xs: 1, md: 1 }}>
+        <Grid
+          item
+          aria-label="Category_Filter"
+          xs={6}
+          md={3}
+          order={{ xs: 1, md: 1 }}
+        >
           <Filter />
         </Grid>
         {/* Central Container */}
@@ -52,13 +56,19 @@ const Home: React.FC = () => {
           <RecipeContainer />
         </Grid>
         {/* Ingredient Filter */}
-        <Grid item aria-label="Ingredient_Filter" xs={6} md={3} lg={2} order={{ xs: 2, md: 3 }}>
+        <Grid
+          item
+          aria-label="Ingredient_Filter"
+          xs={6}
+          md={3}
+          lg={2}
+          order={{ xs: 2, md: 3 }}
+        >
           <IngredientFilter />
         </Grid>
       </Grid>
       <ModalMain>
         {isAddRecipeModalOpen && <AddRecipeModal />}
-        {isAddCategoryModalOpen && <AddCategoryModal />}
         {isEditCategoryModalOpen && <EditCategoryModal />}
         {isCategoryFilterModalOpen && <CategoryFilterModal />}
         {isIngredientFilterModalOpen && <IngredientFilterModal />}

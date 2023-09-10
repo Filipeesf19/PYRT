@@ -1,11 +1,11 @@
 import { Box, Checkbox, FormControlLabel, Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleIngredient } from "../../features/filters/filterSlice";
+import { toggleIngredient } from "../../features/filters/IngredientFilterSlice";
 import { ShoppingList } from "../../utils/data";
 
 const IngredientFilterModal: React.FC = () => {
   const dispatch = useDispatch();
-  const { ingredientList, selectedIngredients } = useSelector(
+  const { itemList, selectedIngredients } = useSelector(
     (store: any) => store.filter
   );
 
@@ -19,7 +19,7 @@ const IngredientFilterModal: React.FC = () => {
     <Box>
       <h1>Ingredients</h1>
       <form>
-        {ingredientList.map((shoppingItem: ShoppingList, index: number) => {
+        {itemList.map((shoppingItem: ShoppingList, index: number) => {
           const { item } = shoppingItem;
           return (
             <FormControlLabel

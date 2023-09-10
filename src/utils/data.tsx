@@ -33,15 +33,20 @@ export const navLinks: navLink[] = [
 
 /* ====FILTER CATEGORIES==== */
 
-export interface Category {
+export interface CategoryType {
+  id: string;
   category: string;
-  subCategory?: string[];
+  subCategories?: string[];
 }
 
-export const filterCategories: Category[] = [
-  { category: "Breakfast", subCategory: ["Smoothies", "Toasts"] },
-  { category: "Deserts" },
-  { category: "Lunch", subCategory: ["fish"] },
+export const filterCategories: CategoryType[] = [
+  {
+    id: crypto.randomUUID(),
+    category: "Breakfast",
+    subCategories: ["Smoothies", "Toasts"],
+  },
+  { id: crypto.randomUUID(), category: "Deserts" },
+  { id: crypto.randomUUID(), category: "Lunch", subCategories: ["fish"] },
 ];
 
 /* ====RECIPES==== */

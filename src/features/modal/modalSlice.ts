@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface ModalState {
   isModalMainOpen: boolean;
-  isAddCategoryModalOpen: boolean;
   isAddRecipeModalOpen: boolean;
+  isDeleteCategoryModalOpen: boolean;
   isAddToShoppingListModalOpen: boolean;
   isEditCategoryModalOpen: boolean;
   isEditRecipeModalOpen: boolean;
@@ -13,8 +13,8 @@ interface ModalState {
 
 const initialState: ModalState = {
   isModalMainOpen: false,
-  isAddCategoryModalOpen: false,
   isAddRecipeModalOpen: false,
+  isDeleteCategoryModalOpen: false,
   isAddToShoppingListModalOpen: false,
   isEditCategoryModalOpen: false,
   isEditRecipeModalOpen: false,
@@ -29,13 +29,14 @@ const modalSlice = createSlice({
     openModal: (state) => {
       state.isModalMainOpen = true;
     },
-    openAddCategoryModal: (state) => {
-      state.isModalMainOpen = true;
-      state.isAddCategoryModalOpen = true;
-    },
+
     openAddRecipeModal: (state) => {
       state.isModalMainOpen = true;
       state.isAddRecipeModalOpen = true;
+    },
+    openDeleteCategoryModal: (state) => {
+      state.isModalMainOpen = true;
+      state.isDeleteCategoryModalOpen = true;
     },
     openAddToShoppingModal: (state) => {
       state.isModalMainOpen = true;
@@ -65,8 +66,8 @@ const modalSlice = createSlice({
 
 export const {
   openModal,
-  openAddCategoryModal,
   openAddRecipeModal,
+  openDeleteCategoryModal,
   openAddToShoppingModal,
   openEditCategoryModal,
   openEditRecipeModal,
