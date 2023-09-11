@@ -12,9 +12,13 @@ import {
   CheckRounded,
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { openCategoryEditMode } from "../../../features/filters/CategoryFilterSlice";
-import { setEditingCategoryInput } from "../../../features/filters/CategoryFilterSlice";
-import { submitCategoryEdition } from "../../../features/filters/CategoryFilterSlice";
+import {
+  openCategoryEditMode,
+  setEditingCategoryInput,
+  submitCategoryEdition,
+  addSubCategory,
+  deleteCategory,
+} from "../../../features/filters/CategoryFilterSlice";
 
 interface Props {
   id: string;
@@ -54,7 +58,11 @@ const Category: React.FC<Props> = ({ category, id }) => {
         sx={{ display: "flex", justifyContent: "start" }}
       />
       <ListItemIcon>
-        <IconButton edge="start" aria-label="delete">
+        <IconButton
+          edge="start"
+          aria-label="delete"
+          onClick={() => dispatch(addSubCategory(id))}
+        >
           <AddRounded />
         </IconButton>
         <IconButton
@@ -64,7 +72,11 @@ const Category: React.FC<Props> = ({ category, id }) => {
         >
           <EditRounded />
         </IconButton>
-        <IconButton edge="start" aria-label="delete">
+        <IconButton
+          edge="start"
+          aria-label="delete"
+          onClick={() => dispatch(deleteCategory(id))}
+        >
           <DeleteRounded />
         </IconButton>
       </ListItemIcon>

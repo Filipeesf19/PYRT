@@ -27,6 +27,23 @@ const categoryFilterSlice = createSlice({
         state.addCategoryInput = "";
       }
     },
+    addSubCategory: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+      state.categoryList.map((item) =>
+        item.id === id ? item.subCategories?.push("") : item
+      );
+    },
+    deleteCategory: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+      state.categoryList = state.categoryList.filter((item) => item.id !== id);
+    },
+    deleteSubCategory: (state, action: PayloadAction<string>) => {
+      const subCategory = action.payload;
+      state.categoryList.map((item) =>
+        item.subCategories?.filter((subItem) => subItem !== subCategory)
+      );
+      console.log(subCategory);
+    },
     setCategoryInput: (state, action: PayloadAction<string>) => {
       state.addCategoryInput = action.payload;
     },
@@ -81,6 +98,9 @@ export const {
   setEditingCategoryInput,
   submitCategoryEdition,
   submitSubCategoryEdition,
+  addSubCategory,
+  deleteCategory,
+  deleteSubCategory,
 } = categoryFilterSlice.actions;
 
 export default categoryFilterSlice.reducer;
