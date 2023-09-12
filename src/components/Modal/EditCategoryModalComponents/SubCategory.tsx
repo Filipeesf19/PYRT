@@ -19,9 +19,14 @@ const Category: React.FC<Props> = ({ subCategory }) => {
     (state: any) => state.categoryFilter
   );
   return categoryBeingEdited === subCategory ? (
-    <>
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="space-between"
+      spacing={2}
+      sx={{ width: "100%" }}
+    >
       <TextField
-        fullWidth
         value={editingCategoryInput}
         onChange={(e) => dispatch(setEditingCategoryInput(e.target.value))}
       />
@@ -32,7 +37,7 @@ const Category: React.FC<Props> = ({ subCategory }) => {
       >
         <CheckRounded />
       </IconButton>
-    </>
+    </Stack>
   ) : (
     <Stack
       direction="row"

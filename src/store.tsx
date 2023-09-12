@@ -1,12 +1,14 @@
 import modalReducer from "./features/modal/modalSlice";
-import filterReducer from "./features/filters/IngredientFilterSlice";
+import ingredientFilterReducer from "./features/filters/IngredientFilterSlice";
 import categoryFilterReducer from "./features/filters/CategoryFilterSlice";
+import addRecipeReducer from "./features/Recipe Setup/addRecipeSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
-    filter: filterReducer,
+    ingredientFilter: ingredientFilterReducer,
     categoryFilter: categoryFilterReducer,
+    addRecipe: addRecipeReducer,
   },
 });

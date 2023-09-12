@@ -1,16 +1,5 @@
-import {
-  ListItemText,
-  ListItemIcon,
-  IconButton,
-  Stack,
-  TextField,
-} from "@mui/material";
-import {
-  AddRounded,
-  EditRounded,
-  DeleteRounded,
-  CheckRounded,
-} from "@mui/icons-material";
+import { ListItemText, ListItemIcon, IconButton, Stack, TextField } from "@mui/material";
+import { AddRounded, EditRounded, DeleteRounded, CheckRounded } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   openCategoryEditMode,
@@ -31,20 +20,22 @@ const Category: React.FC<Props> = ({ category, id }) => {
     (state: any) => state.categoryFilter
   );
   return categoryBeingEdited === category ? (
-    <>
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="space-between"
+      spacing={2}
+      sx={{ width: "100%" }}
+    >
       <TextField
         fullWidth
         value={editingCategoryInput}
         onChange={(e) => dispatch(setEditingCategoryInput(e.target.value))}
       />
-      <IconButton
-        edge="start"
-        aria-label="save"
-        onClick={() => dispatch(submitCategoryEdition())}
-      >
+      <IconButton edge="start" aria-label="save" onClick={() => dispatch(submitCategoryEdition())}>
         <CheckRounded />
       </IconButton>
-    </>
+    </Stack>
   ) : (
     <Stack
       direction="row"
@@ -53,16 +44,9 @@ const Category: React.FC<Props> = ({ category, id }) => {
       spacing={2}
       sx={{ width: "100%" }}
     >
-      <ListItemText
-        primary={category}
-        sx={{ display: "flex", justifyContent: "start" }}
-      />
+      <ListItemText primary={category} sx={{ display: "flex", justifyContent: "start" }} />
       <ListItemIcon>
-        <IconButton
-          edge="start"
-          aria-label="delete"
-          onClick={() => dispatch(addSubCategory(id))}
-        >
+        <IconButton edge="start" aria-label="delete" onClick={() => dispatch(addSubCategory(id))}>
           <AddRounded />
         </IconButton>
         <IconButton
@@ -72,11 +56,7 @@ const Category: React.FC<Props> = ({ category, id }) => {
         >
           <EditRounded />
         </IconButton>
-        <IconButton
-          edge="start"
-          aria-label="delete"
-          onClick={() => dispatch(deleteCategory(id))}
-        >
+        <IconButton edge="start" aria-label="delete" onClick={() => dispatch(deleteCategory(id))}>
           <DeleteRounded />
         </IconButton>
       </ListItemIcon>
