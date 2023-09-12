@@ -1,16 +1,5 @@
-import {
-  ListItemText,
-  ListItemIcon,
-  IconButton,
-  Stack,
-  TextField,
-} from "@mui/material";
-import {
-  AddRounded,
-  EditRounded,
-  DeleteRounded,
-  CheckRounded,
-} from "@mui/icons-material";
+import { ListItemText, ListItemIcon, IconButton, Stack, TextField } from "@mui/material";
+import { EditRounded, DeleteRounded, CheckRounded } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   openCategoryEditMode,
@@ -24,7 +13,7 @@ interface Props {
   subCategory: string;
 }
 
-const Category: React.FC<Props> = ({ subCategory, id }) => {
+const Category: React.FC<Props> = ({ subCategory }) => {
   const dispatch = useDispatch();
   const { categoryBeingEdited, editingCategoryInput } = useSelector(
     (state: any) => state.categoryFilter
@@ -52,10 +41,7 @@ const Category: React.FC<Props> = ({ subCategory, id }) => {
       spacing={2}
       sx={{ width: "100%" }}
     >
-      <ListItemText
-        primary={subCategory}
-        sx={{ display: "flex", justifyContent: "start" }}
-      />
+      <ListItemText primary={subCategory} sx={{ display: "flex", justifyContent: "start" }} />
       <ListItemIcon>
         <IconButton
           edge="start"

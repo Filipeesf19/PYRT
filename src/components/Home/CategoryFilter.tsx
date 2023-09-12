@@ -1,13 +1,6 @@
 import { useState, Fragment } from "react";
 import { List, ListItemButton, ListItem, Collapse, Box, Stack } from "@mui/material";
-import {
-  ExpandLess,
-  ExpandMore,
-  AddCircleRounded,
-  EditRounded,
-  DeleteRounded,
-  FilterAlt,
-} from "@mui/icons-material";
+import { ExpandLess, ExpandMore, EditRounded, FilterAlt } from "@mui/icons-material";
 import { filterCategories } from "../../utils/data";
 import { CustomIconButton1, CustomText1, CustomTextList1 } from "../../styling/GlobalStyles";
 import { useGlobalContext } from "../../context/GlobalContext";

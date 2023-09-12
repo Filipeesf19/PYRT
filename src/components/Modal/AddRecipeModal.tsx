@@ -6,7 +6,8 @@ import { useState } from "react";
 const AddRecipeModal = () => {
   const [rating, setRating] = useState<number | null>(0);
 
-  const handleRatingChange = (event: React.SyntheticEvent, newValue: number | null) => {
+  const handleRatingChange = (e: React.SyntheticEvent, newValue: number | null) => {
+    e.preventDefault;
     setRating(newValue);
   };
 

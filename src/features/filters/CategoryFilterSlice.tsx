@@ -61,7 +61,7 @@ const categoryFilterSlice = createSlice({
       const editingCategoryInput = state.editingCategoryInput;
       const categoryBeingEdited = state.categoryBeingEdited;
       if (editingCategoryInput && categoryBeingEdited !== null) {
-        state.categoryList = state.categoryList.map((item, index) =>
+        state.categoryList = state.categoryList.map((item) =>
           item.category === categoryBeingEdited ? { ...item, category: editingCategoryInput } : item
         );
       }
@@ -72,7 +72,7 @@ const categoryFilterSlice = createSlice({
       const editingCategoryInput = state.editingCategoryInput;
       const categoryBeingEdited = state.categoryBeingEdited;
       if (editingCategoryInput && categoryBeingEdited !== null) {
-        state.categoryList = state.categoryList.map((item, index) => {
+        state.categoryList = state.categoryList.map((item) => {
           if (item.subCategories && item.subCategories.includes(categoryBeingEdited)) {
             const index = item.subCategories.indexOf(categoryBeingEdited);
             item.subCategories.splice(index, 1, editingCategoryInput);
