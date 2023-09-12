@@ -1,12 +1,5 @@
 import { useState, Fragment } from "react";
-import {
-  List,
-  ListItemButton,
-  ListItem,
-  Collapse,
-  Box,
-  Stack,
-} from "@mui/material";
+import { List, ListItemButton, ListItem, Collapse, Box, Stack } from "@mui/material";
 import {
   ExpandLess,
   ExpandMore,
@@ -16,19 +9,12 @@ import {
   FilterAlt,
 } from "@mui/icons-material";
 import { filterCategories } from "../../utils/data";
-import {
-  CustomIconButton1,
-  CustomText1,
-  CustomTextList1,
-} from "../../styling/GlobalStyles";
+import { CustomIconButton1, CustomText1, CustomTextList1 } from "../../styling/GlobalStyles";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useDispatch } from "react-redux";
-import {
-  openEditCategoryModal,
-  openCategoryFilterModal,
-} from "../../features/modal/modalSlice";
+import { openEditCategoryModal, openCategoryFilterModal } from "../../features/modal/modalSlice";
 
-const Filter: React.FC = () => {
+const CategoryFilter: React.FC = () => {
   const dispatch = useDispatch();
 
   const { isExtraSmallScreen, isSmallScreen } = useGlobalContext();
@@ -44,9 +30,7 @@ const Filter: React.FC = () => {
   };
 
   return (
-    <Box
-      sx={{ padding: { xs: "1rem 1rem 0 1rem", md: "1rem 2rem 1rem 2rem" } }}
-    >
+    <Box sx={{ padding: { xs: "1rem 1rem 0 1rem", md: "1rem 2rem 1rem 2rem" } }}>
       <Box
         sx={{
           display: "flex",
@@ -79,31 +63,23 @@ const Filter: React.FC = () => {
           !isSmallScreen &&
           filterCategories.map((categoryData, index) => (
             <Fragment key={index}>
-              {categoryData.subCategory ? (
+              {categoryData?.subCategories ? (
                 <ListItemButton
                   onClick={() => handleClick(categoryData.category)}
                   sx={{ padding: "0" }}
                 >
                   <CustomTextList1 primary={categoryData.category} />
-                  {openCategory === categoryData.category ? (
-                    <ExpandLess />
-                  ) : (
-                    <ExpandMore />
-                  )}
+                  {openCategory === categoryData.category ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
               ) : (
                 <ListItem disablePadding>
                   <CustomTextList1 primary={categoryData.category} />
                 </ListItem>
               )}
-              {categoryData.subCategory && (
-                <Collapse
-                  in={openCategory === categoryData.category}
-                  timeout="auto"
-                  unmountOnExit
-                >
+              {categoryData.subCategories && (
+                <Collapse in={openCategory === categoryData.category} timeout="auto" unmountOnExit>
                   <List disablePadding>
-                    {categoryData.subCategory.map((item, itemIndex) => (
+                    {categoryData.subCategories.map((item, itemIndex) => (
                       <ListItemButton key={itemIndex}>
                         <CustomTextList1 primary={item} />
                       </ListItemButton>
@@ -117,4 +93,4 @@ const Filter: React.FC = () => {
     </Box>
   );
 };
-export default Filter;
+export default CategoryFilter;

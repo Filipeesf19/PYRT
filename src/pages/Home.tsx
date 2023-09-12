@@ -1,4 +1,4 @@
-import Filter from "../components/Home/Filter";
+import CategoryFilter from "../components/Home/CategoryFilter";
 import { Grid } from "@mui/material";
 import IngredientFilter from "../components/Home/IngredientFilter";
 import RecipeContainer from "../components/Home/RecipeContainer";
@@ -32,14 +32,8 @@ const Home: React.FC = () => {
         }}
       >
         {/* Category Filters */}
-        <Grid
-          item
-          aria-label="Category_Filter"
-          xs={6}
-          md={3}
-          order={{ xs: 1, md: 1 }}
-        >
-          <Filter />
+        <Grid item aria-label="Category_Filter" xs={6} md={3} order={{ xs: 1, md: 1 }}>
+          <CategoryFilter />
         </Grid>
         {/* Central Container */}
         <Grid
@@ -56,14 +50,7 @@ const Home: React.FC = () => {
           <RecipeContainer />
         </Grid>
         {/* Ingredient Filter */}
-        <Grid
-          item
-          aria-label="Ingredient_Filter"
-          xs={6}
-          md={3}
-          lg={2}
-          order={{ xs: 2, md: 3 }}
-        >
+        <Grid item aria-label="Ingredient_Filter" xs={6} md={3} lg={2} order={{ xs: 2, md: 3 }}>
           <IngredientFilter />
         </Grid>
       </Grid>

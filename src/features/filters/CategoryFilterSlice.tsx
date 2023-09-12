@@ -29,9 +29,7 @@ const categoryFilterSlice = createSlice({
     },
     addSubCategory: (state, action: PayloadAction<string>) => {
       const id = action.payload;
-      state.categoryList.map((item) =>
-        item.id === id ? item.subCategories?.push("") : item
-      );
+      state.categoryList.map((item) => (item.id === id ? item.subCategories?.push("") : item));
     },
     deleteCategory: (state, action: PayloadAction<string>) => {
       const id = action.payload;
@@ -39,10 +37,12 @@ const categoryFilterSlice = createSlice({
     },
     deleteSubCategory: (state, action: PayloadAction<string>) => {
       const subCategory = action.payload;
-      state.categoryList.map((item) =>
-        item.subCategories?.filter((subItem) => subItem !== subCategory)
+      state.categoryList.map(
+        (item) =>
+          (item.subCategories = item.subCategories?.filter((subCat) => subCat !== subCategory))
       );
       console.log(subCategory);
+      console.log(state.categoryList);
     },
     setCategoryInput: (state, action: PayloadAction<string>) => {
       state.addCategoryInput = action.payload;
@@ -62,23 +62,18 @@ const categoryFilterSlice = createSlice({
       const categoryBeingEdited = state.categoryBeingEdited;
       if (editingCategoryInput && categoryBeingEdited !== null) {
         state.categoryList = state.categoryList.map((item, index) =>
-          item.category === categoryBeingEdited
-            ? { ...item, category: editingCategoryInput }
-            : item
+          item.category === categoryBeingEdited ? { ...item, category: editingCategoryInput } : item
         );
       }
       state.editingCategoryInput = "";
-      state.categoryBeingEdited = null;
+      state.categoryBeingEdited = "";
     },
     submitSubCategoryEdition: (state) => {
       const editingCategoryInput = state.editingCategoryInput;
       const categoryBeingEdited = state.categoryBeingEdited;
       if (editingCategoryInput && categoryBeingEdited !== null) {
         state.categoryList = state.categoryList.map((item, index) => {
-          if (
-            item.subCategories &&
-            item.subCategories.includes(categoryBeingEdited)
-          ) {
+          if (item.subCategories && item.subCategories.includes(categoryBeingEdited)) {
             const index = item.subCategories.indexOf(categoryBeingEdited);
             item.subCategories.splice(index, 1, editingCategoryInput);
           }
@@ -86,7 +81,7 @@ const categoryFilterSlice = createSlice({
         });
       }
       state.editingCategoryInput = "";
-      state.categoryBeingEdited = null;
+      state.categoryBeingEdited = "";
     },
   },
 });
