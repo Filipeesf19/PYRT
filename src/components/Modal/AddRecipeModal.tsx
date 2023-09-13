@@ -1,13 +1,9 @@
 import React, { useState, useRef } from "react";
-import TextField from "@mui/material/TextField";
-import Rating from "@mui/material/Rating";
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { AddPhotoAlternate } from "@mui/icons-material";
 import MenuItem from "@mui/material/MenuItem"; // Import MenuItem component
 import { useDispatch, useSelector } from "react-redux";
 import { setRating, setCookingTime } from "../../features/Recipe Setup/addRecipeSlice";
+import { Select, Button, Grid, Rating, TextField, Typography } from "@mui/material";
 
 const AddRecipeModal = () => {
   const dispatch = useDispatch();
@@ -39,8 +35,7 @@ const AddRecipeModal = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <TextField
-            select
+          <Select
             label="Cooking Time"
             variant="outlined"
             fullWidth
@@ -50,7 +45,7 @@ const AddRecipeModal = () => {
             <MenuItem value="short">Short (&lt;20 mins)</MenuItem>
             <MenuItem value="medium">Medium (20-60 mins)</MenuItem>
             <MenuItem value="long">Long (&gt;60 mins)</MenuItem>
-          </TextField>
+          </Select>
         </Grid>
         <Grid item xs={12} display="flex" alignItems="center" gap="10px">
           <Typography>Rating:</Typography>
@@ -75,22 +70,22 @@ const AddRecipeModal = () => {
               onClick={handleButtonClick}
               sx={{ display: "flex", alignItems: "center", gap: "10px" }}
             >
-              <AddPhotoAlternate />
               Add Photo
+              <AddPhotoAlternate />
             </Button>
           </div>
         </Grid>
 
         <Grid item xs={12}>
-          <Button variant="contained" color="primary" fullWidth>
-            Create
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
           <TextField label="Ingredients" variant="outlined" fullWidth size="small" />
         </Grid>
         <Grid item xs={12}>
           <TextField label="Description" variant="outlined" fullWidth size="small" />
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant="contained" color="primary" fullWidth>
+            Create
+          </Button>
         </Grid>
       </Grid>
     </form>

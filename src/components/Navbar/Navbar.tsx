@@ -10,6 +10,7 @@ import {
   ListItem,
   IconButton,
   ListItemIcon,
+  Divider,
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
 import { NavbarItem, SidebarItem } from "../../styling/GlobalStyles";
@@ -19,28 +20,22 @@ const Navbar: React.FC = () => {
   const { isExtraSmallScreen } = useGlobalContext();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const toggleDrawer =
-    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event &&
-        event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" ||
-          (event as React.KeyboardEvent).key === "Shift")
-      ) {
-        return;
-      }
-      setDrawerOpen(open);
-    };
+  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      ((event as React.KeyboardEvent).key === "Tab" ||
+        (event as React.KeyboardEvent).key === "Shift")
+    ) {
+      return;
+    }
+    setDrawerOpen(open);
+  };
 
   const renderNavigation = () => {
     if (isExtraSmallScreen) {
       return (
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={toggleDrawer(true)}
-        >
+        <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
           <Menu />
         </IconButton>
       );
@@ -72,26 +67,25 @@ const Navbar: React.FC = () => {
       </AppBar>
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <List sx={{ padding: "20px" }}>
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{ textAlign: "center", padding: "20px" }}
-          >
+          <Typography variant="h5" component="div" sx={{ textAlign: "center", padding: "20px" }}>
             Menu
           </Typography>
           {navLinks.map((link, index) => {
             const { url, text, icon } = link;
             return (
-              <ListItem
-                disablePadding
-                component={Link}
-                key={index}
-                to={url}
-                sx={{ padding: "10px" }}
-              >
-                <ListItemIcon>{icon}</ListItemIcon>
-                <SidebarItem primary={text} onClick={toggleDrawer(false)} />
-              </ListItem>
+              <>
+                <ListItem
+                  disablePadding
+                  component={Link}
+                  key={index}
+                  to={url}
+                  sx={{ padding: "10px" }}
+                >
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <SidebarItem primary={text} onClick={toggleDrawer(false)} />
+                </ListItem>
+                <Divider />
+              </>
             );
           })}
         </List>
