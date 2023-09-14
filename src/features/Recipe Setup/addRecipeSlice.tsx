@@ -25,20 +25,35 @@ const addRecipeSlice = createSlice({
       state.cookingTime = action.payload;
     },
     increaseIngredients: (state) => {
-      state.numberOfIngredients = state.numberOfIngredients + 1;
+      if (state.numberOfIngredients < 20) {
+        state.numberOfIngredients = state.numberOfIngredients + 1;
+      }
     },
     decreaseIngredients: (state) => {
-      state.numberOfIngredients = state.numberOfIngredients - 1;
+      if (state.numberOfIngredients > 0) {
+        state.numberOfIngredients = state.numberOfIngredients - 1;
+      }
     },
     increaseSteps: (state) => {
-      state.numberOfSteps = state.numberOfIngredients + 1;
+      if (state.numberOfSteps < 20) {
+        state.numberOfSteps = state.numberOfSteps + 1;
+      }
     },
     decreaseSteps: (state) => {
-      state.numberOfSteps = state.numberOfIngredients - 1;
+      if (state.numberOfSteps > 0) {
+        state.numberOfSteps = state.numberOfSteps - 1;
+      }
     },
   },
 });
 
-export const { setRating, setCookingTime } = addRecipeSlice.actions;
+export const {
+  setRating,
+  setCookingTime,
+  increaseIngredients,
+  decreaseIngredients,
+  increaseSteps,
+  decreaseSteps,
+} = addRecipeSlice.actions;
 
 export default addRecipeSlice.reducer;

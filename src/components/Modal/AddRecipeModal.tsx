@@ -1,13 +1,31 @@
-import React, { useState, useRef } from "react";
-import { AddPhotoAlternate } from "@mui/icons-material";
-import MenuItem from "@mui/material/MenuItem"; // Import MenuItem component
+import { useRef } from "react";
+import { AddPhotoAlternate, ArrowDropUp, ArrowDropDown } from "@mui/icons-material";
+import MenuItem from "@mui/material/MenuItem";
 import { useDispatch, useSelector } from "react-redux";
-import { setRating, setCookingTime } from "../../features/Recipe Setup/addRecipeSlice";
-import { Select, Button, Grid, Rating, TextField, Typography } from "@mui/material";
+import {
+  setRating,
+  setCookingTime,
+  increaseIngredients,
+  decreaseIngredients,
+  increaseSteps,
+  decreaseSteps,
+} from "../../features/Recipe Setup/addRecipeSlice";
+import {
+  Select,
+  Button,
+  Grid,
+  Rating,
+  TextField,
+  Typography,
+  Box,
+  IconButton,
+} from "@mui/material";
 
 const AddRecipeModal = () => {
   const dispatch = useDispatch();
-  const { rating, cookingTime } = useSelector((state: any) => state.addRecipe);
+  const { rating, cookingTime, numberOfIngredients, numberOfSteps } = useSelector(
+    (state: any) => state.addRecipe
+  );
 
   //Upload image
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -75,7 +93,51 @@ const AddRecipeModal = () => {
             </Button>
           </div>
         </Grid>
-
+        <Grid item xs={12} display="flex" justifyContent="center" alignItems="center">
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <TextField
+              label="Ingredients"
+              value={numberOfIngredients}
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
+            <Grid container display="flex" justifyContent="center" alignItems="center">
+              <Grid item xs={12}>
+                <IconButton onClick={() => dispatch(increaseIngredients())}>
+                  <ArrowDropUp />
+                </IconButton>
+              </Grid>
+              <Grid item xs={12}>
+                <IconButton onClick={() => dispatch(decreaseIngredients())}>
+                  <ArrowDropDown />
+                </IconButton>
+              </Grid>
+            </Grid>
+          </Box>
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <TextField
+              label="Description"
+              value={numberOfSteps}
+              variant="outlined"
+              fullWidth
+              size="small"
+              sx={{ textAlign: "center" }}
+            />
+            <Grid container display="flex" justifyContent="center" alignItems="center">
+              <Grid item xs={12}>
+                <IconButton onClick={() => dispatch(increaseSteps())}>
+                  <ArrowDropUp />
+                </IconButton>
+              </Grid>
+              <Grid item xs={12}>
+                <IconButton onClick={() => dispatch(decreaseSteps())}>
+                  <ArrowDropDown />
+                </IconButton>
+              </Grid>
+            </Grid>
+          </Box>
+        </Grid>
         <Grid item xs={12}>
           <TextField label="Ingredients" variant="outlined" fullWidth size="small" />
         </Grid>
