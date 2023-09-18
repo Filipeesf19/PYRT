@@ -41,7 +41,7 @@ const AddRecipeModal = () => {
 
   return (
     <form>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ maxHeight: "400px", overflowY: "scroll" }}>
         <Grid item xs={12}>
           <TextField label="Recipe Name" variant="outlined" fullWidth />
         </Grid>

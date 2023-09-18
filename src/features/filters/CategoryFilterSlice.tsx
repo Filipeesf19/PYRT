@@ -6,6 +6,8 @@ interface CategoryFilterState {
   addCategoryInput: string;
   categoryBeingEdited: string | null;
   editingCategoryInput: string;
+  selectedCategory: string | null;
+  openCategory: string | null;
 }
 
 const initialState: CategoryFilterState = {
@@ -13,6 +15,8 @@ const initialState: CategoryFilterState = {
   addCategoryInput: "",
   categoryBeingEdited: "",
   editingCategoryInput: "",
+  selectedCategory: "",
+  openCategory: "",
 };
 
 const categoryFilterSlice = createSlice({
@@ -25,6 +29,16 @@ const categoryFilterSlice = createSlice({
         const id = crypto.randomUUID();
         state.categoryList.push({ id, category, subCategories: [] });
         state.addCategoryInput = "";
+      }
+    },
+    setSelectedCategory: (state, action: PayloadAction<string>) => {
+      state.selectedCategory = action.payload;
+    },
+    setOpenCategory: (state, action: PayloadAction<string>) => {
+      if (state.openCategory === action.payload) {
+        state.openCategory = "";
+      } else {
+        state.openCategory = action.payload;
       }
     },
     addSubCategory: (state, action: PayloadAction<string>) => {
@@ -88,6 +102,7 @@ const categoryFilterSlice = createSlice({
 
 export const {
   addCategory,
+  setSelectedCategory,
   setCategoryInput,
   openCategoryEditMode,
   setEditingCategoryInput,
@@ -96,6 +111,7 @@ export const {
   addSubCategory,
   deleteCategory,
   deleteSubCategory,
+  setOpenCategory,
 } = categoryFilterSlice.actions;
 
 export default categoryFilterSlice.reducer;

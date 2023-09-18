@@ -25,13 +25,14 @@ const ModalMain: React.FC<ModalMainProps> = ({ children }) => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 400,
+          width: 380,
           bgcolor: "background.paper",
           border: "2px solid #000",
           boxShadow: 24,
           p: 4,
           textAlign: "center",
-          overflow: "auto",
+          maxHeight: "500px",
+          marginRight: 0,
         }}
       >
         {/* Close button */}
@@ -43,7 +44,7 @@ const ModalMain: React.FC<ModalMainProps> = ({ children }) => {
         </IconButton>
 
         {/* Modal content */}
-        {children}
+        <Box sx={{ marginTop: "20px" }}>{children}</Box>
       </Box>
     </Modal>
   );

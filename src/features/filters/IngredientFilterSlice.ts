@@ -1,22 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  shoppingList,
-  filterCategories,
-  ShoppingList,
-  CategoryType,
-} from "../../utils/data";
+import { shoppingList, ShoppingList } from "../../utils/data";
 
 interface FilterState {
   itemList: ShoppingList[];
   selectedIngredients: string[];
-  categoryList: CategoryType[];
-  selectedCategories: string[];
 }
 const initialState: FilterState = {
   itemList: shoppingList,
   selectedIngredients: [],
-  categoryList: filterCategories,
-  selectedCategories: [],
 };
 
 const filterSlice = createSlice({

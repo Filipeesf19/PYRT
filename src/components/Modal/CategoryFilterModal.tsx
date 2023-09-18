@@ -1,5 +1,11 @@
+import CategoryFilterBody from "../Home/CategoryFilterBody";
+
 const CategoryFilterModal = () => {
-  return <div>CategoryFilterModal</div>;
+  return (
+    <div>
+      <CategoryFilterBody />
+    </div>
+  );
 };
 
 export default CategoryFilterModal;

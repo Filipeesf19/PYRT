@@ -2,6 +2,7 @@ import modalReducer from "./features/modal/modalSlice";
 import ingredientFilterReducer from "./features/filters/IngredientFilterSlice";
 import categoryFilterReducer from "./features/filters/CategoryFilterSlice";
 import addRecipeReducer from "./features/Recipe Setup/addRecipeSlice";
+import shoppingListReducer from "./features/Shopping List/shoppingListSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
@@ -10,5 +11,6 @@ export const store = configureStore({
     ingredientFilter: ingredientFilterReducer,
     categoryFilter: categoryFilterReducer,
     addRecipe: addRecipeReducer,
+    shoppingList: shoppingListReducer,
   },
 });
