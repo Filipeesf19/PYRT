@@ -843,7 +843,6 @@ export interface ShoppingList {
   item: string;
   isNeeded: boolean;
   category: string;
-  isFiltered: boolean;
 }
 
 export const shoppingList: ShoppingList[] = [
@@ -851,67 +850,56 @@ export const shoppingList: ShoppingList[] = [
     item: "banana",
     isNeeded: false,
     category: "fruit",
-    isFiltered: false,
   },
   {
     item: "apple",
     isNeeded: true,
     category: "fruit",
-    isFiltered: false,
   },
   {
     item: "potato",
     isNeeded: true,
     category: "vegetables",
-    isFiltered: false,
   },
   {
     item: "lettuce",
     isNeeded: true,
     category: "vegetables",
-    isFiltered: false,
   },
   {
     item: "kale",
     isNeeded: false,
     category: "vegetables",
-    isFiltered: false,
   },
   {
     item: "orange",
     isNeeded: true,
     category: "fruit",
-    isFiltered: false,
   },
   {
     item: "detergent",
     isNeeded: true,
     category: "housekeeping",
-    isFiltered: false,
   },
   {
     item: "dishwasher liquid",
     isNeeded: false,
     category: "housekeeping",
-    isFiltered: false,
   },
   {
     item: "chicken",
     isNeeded: false,
     category: "meat",
-    isFiltered: false,
   },
   {
     item: "white fish",
     isNeeded: false,
     category: "fish",
-    isFiltered: false,
   },
   {
     item: "rice",
     isNeeded: false,
     category: "cereals",
-    isFiltered: false,
   },
 ];
 

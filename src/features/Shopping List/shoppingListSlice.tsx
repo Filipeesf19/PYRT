@@ -3,12 +3,14 @@ import { shoppingList, ShoppingList } from "../../utils/data";
 
 export interface shoppingListState {
   itemList: ShoppingList[];
-  uniqueCategories: string[];
+  item: string;
+  category: string;
 }
 
 const initialState: shoppingListState = {
   itemList: shoppingList,
-  uniqueCategories: [],
+  item: "",
+  category: "",
 };
 
 const shoppingListSlice = createSlice({
@@ -27,9 +29,24 @@ const shoppingListSlice = createSlice({
         return item;
       });
     },
+    setItem: (state, action: PayloadAction<string>) => {
+      state.item = action.payload;
+    },
+    setCategory: (state, action: PayloadAction<string>) => {
+      state.category = action.payload;
+    },
+    addShoppingItem: (state, action: PayloadAction<ShoppingList>) => {
+      const { item, category } = action.payload;
+      const newItem = {
+        item: item,
+        isNeeded: false,
+        category: category,
+      };
+      state.itemList.push(newItem);
+    },
   },
 });
 
-export const { toggleItem } = shoppingListSlice.actions;
+export const { toggleItem, addShoppingItem, setItem, setCategory } = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;
