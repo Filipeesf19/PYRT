@@ -3,10 +3,12 @@ import { shoppingList, ShoppingList } from "../../utils/data";
 
 export interface shoppingListState {
   itemList: ShoppingList[];
+  uniqueCategories: string[];
 }
 
 const initialState: shoppingListState = {
   itemList: shoppingList,
+  uniqueCategories: [],
 };
 
 const shoppingListSlice = createSlice({

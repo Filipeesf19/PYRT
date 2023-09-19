@@ -1,13 +1,19 @@
 import React from "react";
 import { Stack, Box, List, ListItem, ListItemButton, Grid } from "@mui/material";
 import { CustomText3 } from "../../styling/GlobalStyles";
-import { shoppingList } from "../../utils/data";
+import { ShoppingList } from "../../utils/data";
 import { CustomText4 } from "../../styling/GlobalStyles";
 import { SwapHoriz } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleItem } from "../../features/Shopping List/shoppingListSlice";
 
 const NotNeededShopping: React.FC = () => {
-  const categories = shoppingList.map((shoppingList) => shoppingList.category);
-  const categoriesUnique = Array.from(new Set(categories));
+  const dispatch = useDispatch();
+
+  const { itemList, uniqueCategories } = useSelector((store: any) => store.shoppingList);
+
+  const categories: string[] = itemList.map((shoppingList: ShoppingList) => shoppingList.category);
+  const categoriesUnique: string[] = Array.from(new Set(categories));
   return (
     <Stack
       aria-label="Shopping_List_Stack"
@@ -60,7 +66,7 @@ const NotNeededShopping: React.FC = () => {
                 }}
               >
                 <List disablePadding aria-label="Item_List" sx={{ width: "100%" }}>
-                  {shoppingList.map((shoppingItem, innerIndex) => {
+                  {itemList.map((shoppingItem: ShoppingList, innerIndex: number) => {
                     const { isNeeded, item, category } = shoppingItem;
                     if (category == categoryFromArray && !isNeeded) {
                       return (
@@ -81,7 +87,10 @@ const NotNeededShopping: React.FC = () => {
                           }}
                         >
                           <CustomText4 aria-label="Item_Text">{item}</CustomText4>
-                          <ListItemButton sx={{ position: "absolute", right: "5px", padding: "0" }}>
+                          <ListItemButton
+                            sx={{ position: "absolute", right: "5px", padding: "0" }}
+                            onClick={() => dispatch(toggleItem(shoppingItem.item))}
+                          >
                             <SwapHoriz />
                           </ListItemButton>
                         </ListItem>

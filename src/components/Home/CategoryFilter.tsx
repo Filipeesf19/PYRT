@@ -1,20 +1,22 @@
 import React from "react";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { EditRounded, FilterAlt } from "@mui/icons-material";
 import { CustomIconButton1, CustomText1 } from "../../styling/GlobalStyles";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useDispatch } from "react-redux";
 import { openEditCategoryModal, openCategoryFilterModal } from "../../features/modal/modalSlice";
-
 import CategoryFilterBody from "./CategoryFilterBody";
+import { useSelector } from "react-redux";
 
 const CategoryFilter: React.FC = () => {
   const dispatch = useDispatch();
 
+  const { filteredCategory } = useSelector((state: any) => state.categoryFilter);
+
   const { isExtraSmallScreen, isSmallScreen } = useGlobalContext();
 
   return (
-    <Box sx={{ padding: { xs: "1rem 1rem 0 1rem", md: "1rem 2rem 1rem 2rem" } }}>
+    <Stack sx={{ padding: { xs: "1rem 1rem 0 1rem", md: "1rem 2rem 1rem 2rem" } }}>
       <Box
         sx={{
           display: "flex",
@@ -42,8 +44,11 @@ const CategoryFilter: React.FC = () => {
           )}
         </Stack>
       </Box>
-      <CategoryFilterBody />
-    </Box>
+      {!isExtraSmallScreen && !isSmallScreen && <CategoryFilterBody />}
+      {(isExtraSmallScreen || isSmallScreen) && (
+        <Typography sx={{ textAlign: "center" }}>{filteredCategory}</Typography>
+      )}
+    </Stack>
   );
 };
 

@@ -8,6 +8,7 @@ interface CategoryFilterState {
   editingCategoryInput: string;
   selectedCategory: string | null;
   openCategory: string | null;
+  filteredCategory: string | null;
 }
 
 const initialState: CategoryFilterState = {
@@ -17,6 +18,7 @@ const initialState: CategoryFilterState = {
   editingCategoryInput: "",
   selectedCategory: "",
   openCategory: "",
+  filteredCategory: "",
 };
 
 const categoryFilterSlice = createSlice({
@@ -97,6 +99,9 @@ const categoryFilterSlice = createSlice({
       state.editingCategoryInput = "";
       state.categoryBeingEdited = "";
     },
+    updateCategoryFilter: (state) => {
+      state.filteredCategory = state.selectedCategory;
+    },
   },
 });
 
@@ -112,6 +117,7 @@ export const {
   deleteCategory,
   deleteSubCategory,
   setOpenCategory,
+  updateCategoryFilter,
 } = categoryFilterSlice.actions;
 
 export default categoryFilterSlice.reducer;

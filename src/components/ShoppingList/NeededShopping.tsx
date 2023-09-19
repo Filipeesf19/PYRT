@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack, Box, List, ListItem, ListItemButton, Grid } from "@mui/material";
 import { CustomText3 } from "../../styling/GlobalStyles";
-import { ShoppingList, shoppingList } from "../../utils/data";
+import { ShoppingList } from "../../utils/data";
 import { CustomText4 } from "../../styling/GlobalStyles";
 import { SwapHoriz } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,8 +12,8 @@ const NeededShopping: React.FC = () => {
 
   const { itemList } = useSelector((store: any) => store.shoppingList);
 
-  const categories = itemList.map((shoppingList: ShoppingList) => shoppingList.category);
-  const categoriesUnique = Array.from(new Set(categories));
+  const categories: string[] = itemList.map((shoppingList: ShoppingList) => shoppingList.category);
+  const categoriesUnique: string[] = Array.from(new Set(categories));
 
   return (
     <Stack
@@ -67,7 +67,7 @@ const NeededShopping: React.FC = () => {
                 }}
               >
                 <List disablePadding aria-label="Item_List" sx={{ width: "100%" }}>
-                  {shoppingList.map((shoppingItem, innerIndex) => {
+                  {itemList.map((shoppingItem: ShoppingList, innerIndex: number) => {
                     const { isNeeded, item, category } = shoppingItem;
                     if (category == categoryFromArray && isNeeded) {
                       return (
