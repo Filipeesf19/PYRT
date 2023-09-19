@@ -10,7 +10,7 @@ import { toggleItem } from "../../features/Shopping List/shoppingListSlice";
 const NotNeededShopping: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { itemList, uniqueCategories } = useSelector((store: any) => store.shoppingList);
+  const { itemList } = useSelector((store: any) => store.shoppingList);
 
   const categories: string[] = itemList.map((shoppingList: ShoppingList) => shoppingList.category);
   const categoriesUnique: string[] = Array.from(new Set(categories));
