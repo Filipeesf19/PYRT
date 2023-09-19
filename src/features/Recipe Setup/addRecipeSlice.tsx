@@ -1,17 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface AddRecipeState {
+  recipeName: string;
+  category: string;
+  servings: number;
   rating: number;
   cookingTime: string;
+  image: string;
   numberOfIngredients: number;
   numberOfSteps: number;
+  ingredients: string[];
+  quantity: number;
+  description: string[];
 }
 
 const initialState: AddRecipeState = {
+  recipeName: "",
+  category: "",
+  servings: 0,
   rating: 0,
   cookingTime: "",
+  image: "",
   numberOfIngredients: 1,
   numberOfSteps: 1,
+  ingredients: [],
+  quantity: 1,
+  description: [],
 };
 
 const addRecipeSlice = createSlice({

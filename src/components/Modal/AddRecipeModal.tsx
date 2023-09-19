@@ -19,6 +19,7 @@ import {
   Typography,
   Box,
   IconButton,
+  Stack,
 } from "@mui/material";
 
 const AddRecipeModal = () => {
@@ -54,7 +55,7 @@ const AddRecipeModal = () => {
 
         <Grid item xs={12}>
           <Select
-            label="Cooking Time"
+            label="Cooking"
             variant="outlined"
             fullWidth
             value={cookingTime}
@@ -139,10 +140,15 @@ const AddRecipeModal = () => {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <TextField label="Ingredients" variant="outlined" fullWidth size="small" />
+          <Typography>Ingredients</Typography>
+          <Stack direction="row" gap="20px">
+            <TextField label="Ingredient" variant="outlined" size="small" />
+            <TextField label="Qty" variant="outlined" size="small" />
+          </Stack>
         </Grid>
         <Grid item xs={12}>
-          <TextField label="Description" variant="outlined" fullWidth size="small" />
+          <Typography>Description</Typography>
+          <TextField label="Step" variant="outlined" fullWidth size="small" />
         </Grid>
         <Grid item xs={12}>
           <Button variant="contained" color="primary" fullWidth>
