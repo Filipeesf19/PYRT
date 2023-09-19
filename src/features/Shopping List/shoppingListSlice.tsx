@@ -42,9 +42,9 @@ const shoppingListSlice = createSlice({
     addShoppingItem: (state, action: PayloadAction<ShoppingList>) => {
       const { item, category } = action.payload;
       const newItem = {
-        item: item,
+        item: item.toLowerCase(),
         isNeeded: false,
-        category: category,
+        category: category.toLowerCase(),
       };
       if (item && category) {
         state.itemList.push(newItem);
