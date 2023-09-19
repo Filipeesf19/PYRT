@@ -5,12 +5,16 @@ export interface shoppingListState {
   itemList: ShoppingList[];
   item: string;
   category: string;
+  categories: string[];
+  uniqueCategories: string[];
 }
 
 const initialState: shoppingListState = {
   itemList: shoppingList,
   item: "",
   category: "",
+  categories: [],
+  uniqueCategories: [],
 };
 
 const shoppingListSlice = createSlice({
@@ -42,11 +46,20 @@ const shoppingListSlice = createSlice({
         isNeeded: false,
         category: category,
       };
-      state.itemList.push(newItem);
+      if (item && category) {
+        state.itemList.push(newItem);
+        state.item = "";
+        state.category = "";
+      }
+    },
+    updateCategories: (state) => {
+      state.categories = state.itemList.map((shoppingList: ShoppingList) => shoppingList.category);
+      state.uniqueCategories = Array.from(new Set(state.categories));
     },
   },
 });
 
-export const { toggleItem, addShoppingItem, setItem, setCategory } = shoppingListSlice.actions;
+export const { toggleItem, addShoppingItem, setItem, setCategory, updateCategories } =
+  shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

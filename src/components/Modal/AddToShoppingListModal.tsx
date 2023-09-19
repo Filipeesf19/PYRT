@@ -54,7 +54,7 @@ const AddToShoppingListModal = () => {
           color="primary"
           onClick={() => {
             dispatch(addShoppingItem({ item, isNeeded: false, category }));
-            dispatch(closeAllModals());
+            if (item && category) dispatch(closeAllModals());
           }}
         >
           Add

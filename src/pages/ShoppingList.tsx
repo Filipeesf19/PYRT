@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Grid } from "@mui/material";
 import ShoppingHeader from "../components/ShoppingList/ShoppingHeader";
 import NeededShopping from "../components/ShoppingList/NeededShopping";
@@ -6,9 +6,18 @@ import NotNeededShopping from "../components/ShoppingList/NotNeededShopping";
 import ModalMain from "../components/Modal/ModalMain";
 import { useSelector } from "react-redux";
 import AddToShoppingListModal from "../components/Modal/AddToShoppingListModal";
+import { useDispatch } from "react-redux";
+import { updateCategories } from "../features/Shopping List/shoppingListSlice";
 
 const ShoppingList: React.FC = () => {
   const { isAddToShoppingListModalOpen } = useSelector((store: any) => store.modal);
+  const { itemList } = useSelector((store: any) => store.shoppingList);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateCategories());
+  }, [itemList]);
 
   return (
     <Box sx={{ width: "100%", display: "flex", justifyContent: "center", padding: "0 15px" }}>

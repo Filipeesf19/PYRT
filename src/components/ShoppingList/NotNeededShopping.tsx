@@ -10,10 +10,8 @@ import { toggleItem } from "../../features/Shopping List/shoppingListSlice";
 const NotNeededShopping: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { itemList } = useSelector((store: any) => store.shoppingList);
+  const { itemList, uniqueCategories } = useSelector((store: any) => store.shoppingList);
 
-  const categories: string[] = itemList.map((shoppingList: ShoppingList) => shoppingList.category);
-  const categoriesUnique: string[] = Array.from(new Set(categories));
   return (
     <Stack
       aria-label="Shopping_List_Stack"
@@ -33,7 +31,7 @@ const NotNeededShopping: React.FC = () => {
         <CustomText3>Not Needed</CustomText3>
       </Box>
       <Box bgcolor="common.white" sx={{ width: "100%" }}>
-        {categoriesUnique.map((categoryFromArray, index) => {
+        {uniqueCategories.map((categoryFromArray: string, index: number) => {
           return (
             <Grid key={index} container aria-label="Category_Container">
               <Grid
