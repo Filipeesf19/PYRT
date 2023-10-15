@@ -8,6 +8,16 @@ import EditCategoryModal from "../components/Modal/EditCategoryModal";
 import CategoryFilterModal from "../components/Modal/CategoryFilterModal";
 import IngredientFilterModal from "../components/Modal/IngredientFilterModal";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  fetchDataFailure,
+  fetchDataStart,
+  fetchDataSuccess,
+} from "../features/filters/CategoryFilterSlice";
+import { useDispatch } from "react-redux";
+import { collection } from "firebase/firestore";
+import { db } from "../utils/firebase";
+import { getDocs } from "firebase/firestore";
 
 const Home: React.FC = () => {
   const {
@@ -16,6 +26,39 @@ const Home: React.FC = () => {
     isCategoryFilterModalOpen,
     isIngredientFilterModalOpen,
   } = useSelector((store: any) => store.modal);
+
+  const dispatch = useDispatch();
+
+  const { categoryList, loading, error } = useSelector(
+    (store: any) => store.categoryFilter
+  );
+
+  useEffect(() => const fetchData = async () => {
+  try {
+    dispatch(fetchDataStart());
+
+    const collectionRef = collection(firestore, 'yourCollectionName');
+    const querySnapshot = await getDocs(collectionRef);
+
+    const data: YourItemType[] = [];
+
+    querySnapshot.forEach((doc) => {
+      data.push(doc.data() as YourItemType);
+    });
+
+    dispatch(fetchDataSuccess(data));
+  } catch (error) {
+    dispatch(fetchDataFailure(error.message));
+  }
+};[])
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <>
@@ -32,7 +75,13 @@ const Home: React.FC = () => {
         }}
       >
         {/* Category Filters */}
-        <Grid item aria-label="Category_Filter" xs={6} md={3} order={{ xs: 1, md: 1 }}>
+        <Grid
+          item
+          aria-label="Category_Filter"
+          xs={6}
+          md={3}
+          order={{ xs: 1, md: 1 }}
+        >
           <CategoryFilter />
         </Grid>
         {/* Central Container */}
@@ -50,7 +99,14 @@ const Home: React.FC = () => {
           <RecipeContainer />
         </Grid>
         {/* Ingredient Filter */}
-        <Grid item aria-label="Ingredient_Filter" xs={6} md={3} lg={2} order={{ xs: 2, md: 3 }}>
+        <Grid
+          item
+          aria-label="Ingredient_Filter"
+          xs={6}
+          md={3}
+          lg={2}
+          order={{ xs: 2, md: 3 }}
+        >
           <IngredientFilter />
         </Grid>
       </Grid>

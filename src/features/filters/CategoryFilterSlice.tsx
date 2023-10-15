@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { filterCategories, CategoryType } from "../../utils/data";
+import { CategoryType } from "../../utils/data";
+import { addDocument } from "../../utils/firebase";
 
 interface CategoryFilterState {
   categoryList: CategoryType[];
+  loading: boolean;
+  error: string | null;
   addCategoryInput: string;
   categoryBeingEdited: string | null;
   editingCategoryInput: string;
@@ -12,7 +15,9 @@ interface CategoryFilterState {
 }
 
 const initialState: CategoryFilterState = {
-  categoryList: filterCategories,
+  categoryList: [],
+  loading: false,
+  error: null,
   addCategoryInput: "",
   categoryBeingEdited: "",
   editingCategoryInput: "",
@@ -31,6 +36,7 @@ const categoryFilterSlice = createSlice({
         const id = crypto.randomUUID();
         state.categoryList.push({ id, category, subCategories: [] });
         state.addCategoryInput = "";
+        addDocument("Categories", category, { id });
       }
     },
     setSelectedCategory: (state, action: PayloadAction<string>) => {
@@ -45,7 +51,9 @@ const categoryFilterSlice = createSlice({
     },
     addSubCategory: (state, action: PayloadAction<string>) => {
       const id = action.payload;
-      state.categoryList.map((item) => (item.id === id ? item.subCategories?.push("") : item));
+      state.categoryList.map((item) =>
+        item.id === id ? item.subCategories?.push("") : item
+      );
     },
     deleteCategory: (state, action: PayloadAction<string>) => {
       const id = action.payload;
@@ -55,7 +63,9 @@ const categoryFilterSlice = createSlice({
       const subCategory = action.payload;
       state.categoryList.map(
         (item) =>
-          (item.subCategories = item.subCategories?.filter((subCat) => subCat !== subCategory))
+          (item.subCategories = item.subCategories?.filter(
+            (subCat) => subCat !== subCategory
+          ))
       );
       console.log(subCategory);
       console.log(state.categoryList);
@@ -78,7 +88,9 @@ const categoryFilterSlice = createSlice({
       const categoryBeingEdited = state.categoryBeingEdited;
       if (editingCategoryInput && categoryBeingEdited !== null) {
         state.categoryList = state.categoryList.map((item) =>
-          item.category === categoryBeingEdited ? { ...item, category: editingCategoryInput } : item
+          item.category === categoryBeingEdited
+            ? { ...item, category: editingCategoryInput }
+            : item
         );
       }
       state.editingCategoryInput = "";
@@ -89,7 +101,10 @@ const categoryFilterSlice = createSlice({
       const categoryBeingEdited = state.categoryBeingEdited;
       if (editingCategoryInput && categoryBeingEdited !== null) {
         state.categoryList = state.categoryList.map((item) => {
-          if (item.subCategories && item.subCategories.includes(categoryBeingEdited)) {
+          if (
+            item.subCategories &&
+            item.subCategories.includes(categoryBeingEdited)
+          ) {
             const index = item.subCategories.indexOf(categoryBeingEdited);
             item.subCategories.splice(index, 1, editingCategoryInput);
           }
@@ -101,6 +116,18 @@ const categoryFilterSlice = createSlice({
     },
     updateCategoryFilter: (state) => {
       state.filteredCategory = state.selectedCategory;
+    },
+    fetchDataStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchDataSuccess: (state, action: PayloadAction<CategoryType[]>) => {
+      state.categoryList = action.payload;
+      state.loading = false;
+    },
+    fetchDataFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
     },
   },
 });
@@ -118,6 +145,9 @@ export const {
   deleteSubCategory,
   setOpenCategory,
   updateCategoryFilter,
+  fetchDataStart,
+  fetchDataSuccess,
+  fetchDataFailure,
 } = categoryFilterSlice.actions;
 
 export default categoryFilterSlice.reducer;
